@@ -11,6 +11,8 @@
 |
 */
 
+use App\video;
+
 Route::get('/', function () {
     return view('welcome');
 });
