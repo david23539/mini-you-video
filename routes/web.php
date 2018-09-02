@@ -14,5 +14,25 @@
 use App\video;
 
 Route::get('/', function () {
-    return view('welcome');
+   return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', array(
+    'as'=>'home',
+    'uses'=>'HomeController@index'
+));
+
+Route::get('/crear-video', array(
+        'as'=>'createVideo',
+        'middleware' => 'auth',
+        'uses'=>'videoController@createVideo'
+));
+
+Route::post('/guardar-video', array(
+    'as'=>'saveVideo',
+    'middleware' => 'auth',
+    'uses'=>'videoController@saveVideo'
+));
+

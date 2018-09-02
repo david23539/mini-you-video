@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class video extends Model
 {
     protected $table = 'videos';
-
+    public $timestamps = false;
     //Relacion OneToMany
     public function comments(){
         return $this->hasMany('App\comentario');
