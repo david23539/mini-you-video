@@ -16,6 +16,11 @@ class videoController extends Controller
         return view('video.createVideo');
     }
 
+    public function getImage($filename){
+        $file = Storage::disk('images')->get($filename);
+        return new Response($file, 200);
+    }
+
     public function saveVideo(Request $req){
         $validateData = $this->validate($req, [
             'title'=> 'required |min:5',
@@ -27,7 +32,18 @@ class videoController extends Controller
         $video->user_id = $user->id;
         $video->title = $req->input('title');
         $video->description = $req->input('description');
-
+        $image = $req->file('image');
+        if($image){
+            $image_path = time().$image->getClientOriginalName();
+            \Storage::disk('images')->put($image_path, \File::get($image));
+            $video->image = $image_path;
+        }
+        $video_file = $req->file('video');
+        if($video_file){
+            $video_path = time().$video_file->getClientOriginalName();
+            \Storage::disk('videos')->put($video_path, \File::get($video_file));
+            $video->video_path = $video_path;
+        }
         $video->save();
         return redirect()->route('home')->with(array(
             'mesage'=>'El video se ha subido correctamente'

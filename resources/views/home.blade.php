@@ -3,20 +3,41 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+        <div class="container">
+            @if(session('mesage'))
+                <div class="aler alert-success">
+                    {{session('mesage')}}
                 </div>
+            @endif
+            <div id="videosList">
+                @foreach($videos as $video)
+                    <div class="video-item col-lg-10 pull-left panel panel-default">
+                        <div class="panel-body col-lg-3">
+                            @if (\Storage::disk('images')->has($video->image))
+                                <div class="video-image-thumb col-md-3 pull-left">
+                                    <div class="video-image-mask">
+                                        <img src="{{url('miniatura/'.$video->image)}}" class="video-image">
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="data">
+                            <h4 class="video-title">
+                                <a href=""> {{$video->title}}</a>
+                            </h4>
+                            <p>
+                                {{$video->user->name. ' '.$video->user->surname}}
+                            </p>
+                        </div>
+                        <a href="" class="btn btn-success">Ver</a>
+                        @if (Auth::check() && Auth::user()->id == $video->user->id)
+                            <a href="" class="btn btn-warning">Editar</a>
+                            <a href="" class="btn btn-danger">Eliminar</a>
+                        @endif
+                    </div>
+                @endforeach
             </div>
+            {{$videos->links()}}
         </div>
     </div>
 </div>
