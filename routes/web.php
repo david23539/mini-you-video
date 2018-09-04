@@ -41,3 +41,8 @@ Route::get('/miniatura/{filename}', array(
     'uses'=>'videoController@getImage'
 ));
 
+Route::get('/video/{videoId}',  array(
+    'as'=>'detailVideo',
+    'uses'=>'videoController@getVideoPage'
+));
+
