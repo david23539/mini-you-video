@@ -84,6 +84,10 @@
         </nav>
 
         @yield('content')
+        <footer class="col-md-10 col-md-offset-1">
+            <hr>
+            <p>Video de miniVideos</p>
+        </footer>
     </div>
 
     <!-- Scripts -->

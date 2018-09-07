@@ -11,6 +11,7 @@
 |
 */
 
+
 use App\video;
 
 Route::get('/', function () {
@@ -46,3 +47,13 @@ Route::get('/video/{videoId}',  array(
     'uses'=>'videoController@getVideoPage'
 ));
 
+Route::get('/video_file/{filename}', array(
+    'as'=>'fileVideo',
+    'uses'=>'videoController@getVideos'
+));
+
+Route::post('/comments', array(
+    'as'=>'comment',
+    'middleware'=>'auth',
+    'uses'=>'CommentsController@store'
+));

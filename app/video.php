@@ -10,7 +10,7 @@ class video extends Model
     public $timestamps = false;
     //Relacion OneToMany
     public function comments(){
-        return $this->hasMany('App\comentario');
+        return $this->hasMany('App\comentario')->orderBy('id', 'desc');
     }
 
     //Relacion de muchos a uno

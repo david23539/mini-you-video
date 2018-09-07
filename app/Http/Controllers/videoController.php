@@ -21,6 +21,11 @@ class videoController extends Controller
         return new Response($file, 200);
     }
 
+    public function getVideos($filename){
+        $file = Storage::disk('videos')->get($filename);
+        return new Response($file, 200);
+    }
+
     public function saveVideo(Request $req)
     {
         $validateData = $this->validate($req, [
@@ -52,7 +57,8 @@ class videoController extends Controller
     }
 
     public function getVideoPage($video_id){
-
+        
+        
         $video = video::find($video_id);
         return view('video.detail', array(
             'video'=>$video
