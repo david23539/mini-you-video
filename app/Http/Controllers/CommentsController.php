@@ -22,4 +22,19 @@ class CommentsController extends Controller
             'message'=>'Comentario añadido correctamente'
         ));
     }
+
+    public function delete($comment_id){
+        $user = \Auth::user();
+        $comment = comentario::find($comment_id);
+
+        if($user && ($comment->user_id == $user->id) || $comment->video->user_id == $user->id){
+            $comment->delete();
+        }
+        return redirect()->route('detailVideo', ['videoId'=>$comment->video_id])->with(array(
+            'message'=>'Comentario eliminado correctamente'
+        ));
+
+    }
+
+
 }

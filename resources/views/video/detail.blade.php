@@ -22,7 +22,9 @@
                     {{$video->description}}
                 </div>
             </div>
-            @include('video.commnets')
+                @include('video.commnets')
+
+
         </div>
     </div>
 @endsection

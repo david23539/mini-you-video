@@ -57,3 +57,34 @@ Route::post('/comments', array(
     'middleware'=>'auth',
     'uses'=>'CommentsController@store'
 ));
+
+Route::get('/delete-comment/{comment_id}', array(
+    'as'=>'commentDelete',
+    'middleware'=>'auth',
+    'uses'=>'CommentsController@delete'
+));
+Route::get('/delete-video/{video_id}', array(
+    'as'=>'videoDelete',
+    'middleware'=>'auth',
+    'uses'=>'videoController@delete'
+));
+
+Route::get('/editar-video/{video_id}', array(
+    'as'=>'videoEdit',
+    'middleware'=>'auth',
+    'uses'=>'videoController@edit'
+));
+
+Route::post('/update-video/{video_id}', array(
+    'as'=>'updateVideo',
+    'middleware' => 'auth',
+    'uses'=>'videoController@update'
+));
+
+Route::get('/buscar/{search?}',[
+    'as'=>'videoSearch',
+    'uses'=>'videoController@search'
+]);
+
+
+
