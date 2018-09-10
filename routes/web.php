@@ -15,7 +15,11 @@
 use App\video;
 
 Route::get('/', function () {
-   return view('welcome');
+   /*return view('home', array(
+       'as' =>'home',
+       'uses'=>'HomeController@index'
+   ));*/
+   return redirect()->route('home');
 });
 
 Auth::routes();
@@ -81,10 +85,11 @@ Route::post('/update-video/{video_id}', array(
     'uses'=>'videoController@update'
 ));
 
-Route::get('/buscar/{search?}',[
+Route::get('/buscar/{search?}/{filter?}',[
     'as'=>'videoSearch',
     'uses'=>'videoController@search'
 ]);
 
-
-
+Route::get('/clearCache', function(){
+    $code = Artisan::call('cache:clear');
+});
