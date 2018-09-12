@@ -15,7 +15,7 @@
                     <a href="{{ route('detailVideo', ['videoId'=>$video->id])}}"> {{$video->title}}</a>
                 </h4>
                 <p>
-                    {{$video->user->name. ' '.$video->user->surname}}
+                   <a href="{{route('channel',['user_id'=>$video->user_id])}}">{{$video->user->name. ' '.$video->user->surname}}</a> {{\FormatTime::LongTimeFilter(new \DateTime())}}
                 </p>
             </div>
             <a href="{{ route('detailVideo', ['videoId'=>$video->id])}}" class="btn btn-success">Ver</a>

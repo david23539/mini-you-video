@@ -13,7 +13,7 @@
             <div class="panel panel-default video-data">
                 <div class="panel-heading">
                     <div class="panel-title">
-                    Subido por <strong>{{$video->user->name.' '.$video->user->surname}}<strong>hace  
+                    Subido por <strong><a href="{{route('channel',['user_id'=>$video->user_id])}}">{{$video->user->name. ' '.$video->user->surname}}</a><strong>hace
                         {{\FormatTime::LongTimeFilter(new \DateTime())}}
                         
                     </div>

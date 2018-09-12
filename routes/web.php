@@ -93,3 +93,8 @@ Route::get('/buscar/{search?}/{filter?}',[
 Route::get('/clearCache', function(){
     $code = Artisan::call('cache:clear');
 });
+
+Route::get('/canal/{user_id}', array(
+    'as'=>'channel',
+    'uses'=> 'UserController@channel'
+));
